@@ -1,20 +1,25 @@
 package sg.darren.springboot.thymeleaf.controller;
 
-import java.util.Date;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
-public class DemoController {
+import sg.darren.springboot.thymeleaf.entity.NavbarBean;
 
-	@GetMapping("/hello")
-	public String sayHello(Model model) {
+@Controller
+public class AboutController {
+
+	@Autowired
+	private NavbarBean navbarBean;
+	
+	@GetMapping("/about")
+	public String getEmployeeList(Model model) {
 		
-		model.addAttribute("theDate", new Date());
+		navbarBean.setCurrentPage("about");
+		model.addAttribute("navbar", navbarBean);
 		
-		return "helloworld";
+		return "about";
 	}
 	
 }

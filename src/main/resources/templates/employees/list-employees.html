@@ -23,11 +23,11 @@
 		  	</button>
 		  	<div class="collapse navbar-collapse" id="navbar">
 		  		<ul class="navbar-nav mr-auto">
-		  			<li class="nav-item ${navbar.currentPage=='employees' ? 'active' : ''}">
-			        	<a class="nav-link" href="${pageContext.request.contextPath}/employees/list">Employees</a>
+		  			<li class="nav-item" th:classappend="${navbar.currentPage=='employees'} ? active : ''">
+			        	<a class="nav-link" th:href="@{/employees/list}">Employees</a>
 			      	</li>
-		  			<li class="nav-item ${navbar.currentPage=='about' ? 'active' : ''}">
-			        	<a class="nav-link" href="${pageContext.request.contextPath}/about">About</a>
+		  			<li class="nav-item" th:classappend="${navbar.currentPage=='about'} ? active : ''">
+			        	<a class="nav-link" th:href="@{/about}">About</a>
 			      	</li>
 		  		</ul>
 		  		<form class="form-inline my-0 ml-auto">

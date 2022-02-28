@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import sg.darren.springboot.thymeleaf.entity.Employee;
+import sg.darren.springboot.thymeleaf.entity.NavbarBean;
 import sg.darren.springboot.thymeleaf.service.EmployeeService;
 
 @Controller
@@ -31,13 +32,19 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
+	@Autowired
+	private NavbarBean navbarBean;
+	
 	@GetMapping("/list")
 	public String listEmployees(Model model) {
 		
 		List<Employee> employees = employeeService.findAll();
 		
 		model.addAttribute("employees", employees);
-			
+		
+		navbarBean.setCurrentPage("employees");
+		model.addAttribute("navbar", navbarBean);
+		
 		return "employees/list-employees";
 	}
 	
@@ -45,6 +52,9 @@ public class EmployeeController {
 	public String showFormForAdd(Model model) {
 		
 		model.addAttribute("employee", new Employee());
+		
+		navbarBean.setCurrentPage("employees");
+		model.addAttribute("navbar", navbarBean);
 		
 		return "employees/employee-form";
 	}
@@ -54,6 +64,9 @@ public class EmployeeController {
 		
 		Employee employee = employeeService.findById(id);
 		model.addAttribute("employee", employee);
+		
+		navbarBean.setCurrentPage("employees");
+		model.addAttribute("navbar", navbarBean);
 		
 		return "employees/employee-form";
 	}
